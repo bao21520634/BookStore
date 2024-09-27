@@ -17,26 +17,26 @@ import { ThemeLeptonXModule } from '@abp/ng.theme.lepton-x';
 import { SideMenuLayoutModule } from '@abp/ng.theme.lepton-x/layouts';
 import { AbpOAuthModule } from '@abp/ng.oauth';
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CoreModule.forRoot({
-      environment,
-      registerLocaleFn: registerLocale(),
-    }),
-    AbpOAuthModule.forRoot(),
-    AccountConfigModule.forRoot(),
-    TenantManagementConfigModule.forRoot(),
-    IdentityConfigModule.forRoot(),
-    ThemeSharedModule.forRoot(),
-    SettingManagementConfigModule.forRoot(),
-    ThemeLeptonXModule.forRoot(),
-    SideMenuLayoutModule.forRoot(),
-    FeatureManagementModule.forRoot(),
-  ],
-  providers: [APP_ROUTE_PROVIDER],
-  bootstrap: [AppComponent],
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        CoreModule.forRoot({
+            environment,
+            registerLocaleFn: registerLocale(),
+        }),
+        AbpOAuthModule.forRoot(),
+        AccountConfigModule.forRoot(),
+        TenantManagementConfigModule.forRoot(),
+        IdentityConfigModule.forRoot(),
+        ThemeSharedModule.forRoot(),
+        SettingManagementConfigModule.forRoot(),
+        ThemeLeptonXModule.forRoot(),
+        SideMenuLayoutModule.forRoot(),
+        FeatureManagementModule.forRoot(),
+    ],
+    providers: [APP_ROUTE_PROVIDER],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}
