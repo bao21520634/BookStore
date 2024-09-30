@@ -19,4 +19,14 @@ public static class BookStorePermissions
         public const string Edit = Default + ".Edit";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class GalleryImages
+    {
+        public const string Default = GroupName + ".GalleryImages";
+
+        public const string Management = Default + ".Management";
+        public const string Create = Default + ".Create";
+        public const string Update = Default + ".Update";
+        public const string Delete = Default + ".Delete";
+    }
 }

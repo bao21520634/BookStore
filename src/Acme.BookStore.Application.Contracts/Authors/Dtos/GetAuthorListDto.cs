@@ -1,6 +1,6 @@
 using Volo.Abp.Application.Dtos;
 
-namespace Acme.BookStore.Authors;
+namespace Acme.BookStore.Authors.Dtos;
 
 public class GetAuthorListDto : PagedAndSortedResultRequestDto
 {

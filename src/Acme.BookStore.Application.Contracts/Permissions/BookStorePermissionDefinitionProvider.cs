@@ -25,6 +25,12 @@ public class BookStorePermissionDefinitionProvider : PermissionDefinitionProvide
         authorsPermission.AddChild(
             BookStorePermissions.Authors.Delete, L("Permission:Authors.Delete"));
 
+        var galleryImagePermission = bookStoreGroup.AddPermission(BookStorePermissions.GalleryImages.Default, L("Permission:GalleryImages.ImageManagement"));
+        galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Management, L("Permission:GalleryImages.Management"));
+        galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Create, L("Permission:GalleryImages.Create"));
+        galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Update, L("Permission:GalleryImages.Edit"));
+        galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Delete, L("Permission:GalleryImages.Delete"));
+
     }
 
     private static LocalizableString L(string name)

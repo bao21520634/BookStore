@@ -8,22 +8,15 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Acme.BookStore;
 
-public class BookStoreDataSeederContributor
-    : IDataSeedContributor, ITransientDependency
+public class BookStoreDataSeederContributor(
+    IRepository<Book, Guid> bookRepository,
+    IAuthorRepository authorRepository,
+    AuthorManager authorManager)
+        : IDataSeedContributor, ITransientDependency
 {
-    private readonly IRepository<Book, Guid> _bookRepository;
-    private readonly IAuthorRepository _authorRepository;
-    private readonly AuthorManager _authorManager;
-
-    public BookStoreDataSeederContributor(
-        IRepository<Book, Guid> bookRepository,
-        IAuthorRepository authorRepository,
-        AuthorManager authorManager)
-    {
-        _bookRepository = bookRepository;
-        _authorRepository = authorRepository;
-        _authorManager = authorManager;
-    }
+    private readonly IRepository<Book, Guid> _bookRepository = bookRepository;
+    private readonly IAuthorRepository _authorRepository = authorRepository;
+    private readonly AuthorManager _authorManager = authorManager;
 
     public async Task SeedAsync(DataSeedContext context)
     {

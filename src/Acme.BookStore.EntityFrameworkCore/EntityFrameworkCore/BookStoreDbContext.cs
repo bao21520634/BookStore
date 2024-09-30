@@ -16,14 +16,29 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Acme.BookStore.Books;
 using Acme.BookStore.Authors;
+using Volo.CmsKit.EntityFrameworkCore;
+using Volo.CmsKit.Tags;
+using Volo.CmsKit.Comments;
+using Volo.CmsKit.Blogs;
+using Volo.CmsKit.Users;
+using Volo.CmsKit.Reactions;
+using Volo.CmsKit.Ratings;
+using Volo.CmsKit.Pages;
+using Volo.CmsKit.MediaDescriptors;
+using Volo.CmsKit.Menus;
+using Volo.CmsKit.GlobalResources;
+using Acme.BookStore.GalleryImages;
+using Volo.CmsKit.MarkedItems;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
+[ReplaceDbContext(typeof(ICmsKitDbContext))]
 [ReplaceDbContext(typeof(IIdentityDbContext))]
 [ReplaceDbContext(typeof(ITenantManagementDbContext))]
 [ConnectionStringName("Default")]
 public class BookStoreDbContext :
     AbpDbContext<BookStoreDbContext>,
+    ICmsKitDbContext,
     ITenantManagementDbContext,
     IIdentityDbContext
 {
@@ -46,6 +61,37 @@ public class BookStoreDbContext :
     // Identity
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
+    public DbSet<GalleryImage> GalleryImages { get; set; }
+
+    #region CMS Kit Entities
+
+    public DbSet<Comment> Comments { get; set; }
+
+    public DbSet<CmsUser> User { get; set; }
+
+    public DbSet<UserReaction> Reactions { get; set; }
+
+    public DbSet<Rating> Ratings { get; set; }
+
+    public DbSet<Tag> Tags { get; set; }
+
+    public DbSet<EntityTag> EntityTags { get; set; }
+
+    public DbSet<Page> Pages { get; set; }
+
+    public DbSet<Blog> Blogs { get; set; }
+
+    public DbSet<BlogPost> BlogPosts { get; set; }
+
+    public DbSet<BlogFeature> BlogFeatures { get; set; }
+
+    public DbSet<MediaDescriptor> MediaDescriptors { get; set; }
+
+    public DbSet<MenuItem> MenuItems { get; set; }
+
+    public DbSet<GlobalResource> GlobalResources { get; set; }
+
+    #endregion
 
 
     public DbSet<IdentityUser> Users { get; set; }
@@ -60,6 +106,8 @@ public class BookStoreDbContext :
     // Tenant Management
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+
+    public DbSet<UserMarkedItem> UserMarkedItems => throw new System.NotImplementedException();
 
     #endregion
 
@@ -84,6 +132,7 @@ public class BookStoreDbContext :
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
         builder.ConfigureBlobStoring();
+        builder.ConfigureCmsKit();
 
         /* Configure your own tables/entities inside here */
 
@@ -119,5 +168,10 @@ public class BookStoreDbContext :
             b.HasOne<Author>().WithMany().HasForeignKey(x => x.AuthorId).IsRequired();
         });
 
+        builder.Entity<GalleryImage>(b =>
+        {
+            b.ToTable(BookStoreConsts.DbTablePrefix + "Images", BookStoreConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
     }
 }

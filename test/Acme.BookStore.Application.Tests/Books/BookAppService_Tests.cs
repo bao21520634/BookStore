@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Acme.BookStore.Authors;
+using Acme.BookStore.Authors.Dtos;
+using Acme.BookStore.Books.Dtos;
 using Shouldly;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Modularity;

@@ -17,6 +17,7 @@ using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.TenantManagement;
+using Volo.CmsKit;
 
 namespace Acme.BookStore;
 
@@ -35,7 +36,8 @@ namespace Acme.BookStore;
     typeof(AbpTenantManagementDomainModule),
     typeof(BlobStoringDatabaseDomainModule)
     )]
-public class BookStoreDomainModule : AbpModule
+[DependsOn(typeof(CmsKitDomainModule))]
+    public class BookStoreDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

@@ -1,4 +1,4 @@
-import type { AuthorDto, CreateAuthorDto, GetAuthorListDto, UpdateAuthorDto } from './models';
+import type { AuthorDto, CreateAuthorDto, GetAuthorListDto, UpdateAuthorDto } from './dtos/models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';

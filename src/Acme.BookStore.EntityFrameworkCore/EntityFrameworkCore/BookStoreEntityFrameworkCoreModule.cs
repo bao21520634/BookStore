@@ -13,6 +13,7 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Volo.CmsKit.EntityFrameworkCore;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
@@ -29,7 +30,8 @@ namespace Acme.BookStore.EntityFrameworkCore;
     typeof(AbpTenantManagementEntityFrameworkCoreModule),
     typeof(BlobStoringDatabaseEntityFrameworkCoreModule)
     )]
-public class BookStoreEntityFrameworkCoreModule : AbpModule
+[DependsOn(typeof(CmsKitEntityFrameworkCoreModule))]
+    public class BookStoreEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

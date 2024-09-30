@@ -1,7 +1,7 @@
 using System;
 using Volo.Abp.Application.Dtos;
 
-namespace Acme.BookStore.Books;
+namespace Acme.BookStore.Books.Dtos;
 
 public class AuthorLookupDto : EntityDto<Guid>
 {

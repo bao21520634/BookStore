@@ -1,9 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
 
-namespace Acme.BookStore.Books;
+namespace Acme.BookStore.Books.Dtos;
 
-public class BookDto : AuditedEntityDto<Guid>
+public class BookDto : EntityDto<Guid>
 
 {
     public required string Name { get; set; }

@@ -1,4 +1,4 @@
-import type { AuthorLookupDto, BookDto, CreateUpdateBookDto } from './models';
+import type { AuthorLookupDto, BookDto, CreateUpdateBookDto } from './dtos/models';
 import { RestService, Rest } from '@abp/ng.core';
 import type { ListResultDto, PagedAndSortedResultRequestDto, PagedResultDto } from '@abp/ng.core';
 import { Injectable } from '@angular/core';

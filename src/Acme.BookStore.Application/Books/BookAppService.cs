@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Acme.BookStore.Authors;
+using Acme.BookStore.Books.Dtos;
 using Acme.BookStore.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
@@ -31,6 +32,7 @@ public class BookAppService :
         : base(repository)
     {
         _authorRepository = authorRepository;
+
         GetPolicyName = BookStorePermissions.Books.Default;
         GetListPolicyName = BookStorePermissions.Books.Default;
         CreatePolicyName = BookStorePermissions.Books.Create;
@@ -50,14 +52,10 @@ public class BookAppService :
                     select new { book, author };
 
         //Execute the query and get the book with author
-        var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query);
-        if (queryResult == null)
-        {
-            throw new EntityNotFoundException(typeof(Book), id);
-        }
-
+        var queryResult = await AsyncExecuter.FirstOrDefaultAsync(query) ?? throw new EntityNotFoundException(typeof(Book), id);
         var bookDto = ObjectMapper.Map<Book, BookDto>(queryResult.book);
         bookDto.AuthorName = queryResult.author.Name;
+
         return bookDto;
     }
 
@@ -73,7 +71,7 @@ public class BookAppService :
 
         //Paging
         query = query
-            .OrderBy(NormalizeSorting(input.Sorting))
+            .OrderBy(NormalizeSorting(input.Sorting ?? string.Empty))
             .Skip(input.SkipCount)
             .Take(input.MaxResultCount);
 

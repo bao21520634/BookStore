@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Acme.BookStore.Authors;
+namespace Acme.BookStore.Authors.Dtos;
 
 public class UpdateAuthorDto
 {

@@ -11,5 +11,4 @@ public class Book : AuditedAggregateRoot<Guid>
     public float Price { get; set; }
 
     public Guid AuthorId { get; set; }
-
 }
