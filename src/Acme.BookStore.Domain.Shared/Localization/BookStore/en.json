@@ -6,6 +6,13 @@
     "LongWelcomeMessage": "Welcome to the application. This is a startup project based on the ABP. For more information, visit abp.io.",
     "Menu:BookStore": "Book Store",
     "Menu:Books": "Books",
+    "Menu:Authors": "Authors",
+    "Menu:SystemCategory": "System Category",
+    "Menu:Currencies": "Currencies",
+    "Menu:Departments": "Departments",
+    "Menu:ExpenseCodes": "Expense Codes",
+    "Menu:KindOfFals": "Kind Of Fal",
+    "Menu:VATs": "VATs",
     "Actions": "Actions",
     "Close": "Close",
     "Delete": "Delete",
@@ -28,7 +35,6 @@
     "Enum:BookType.7": "Science fiction",
     "Enum:BookType.8": "Poetry",
     "BookStore:00001": "There is already an author with the same name: {name}",
-    "Menu:Authors": "Authors",
     "Authors": "Authors",
     "AuthorDeletionConfirmationMessage": "Are you sure to delete the author '{0}'?",
     "BirthDate": "Birth date",
@@ -46,6 +52,11 @@
     "Permission:GalleryImages.Create": "Create",
     "Permission:GalleryImages.Edit": "Edit",
     "Permission:GalleryImages.Delete": "Delete",
-    "Permission:GalleryImages.Management": "Management"
+    "Permission:GalleryImages.Management": "Management",
+    "Permission:SystemCategories.SystemCategoryManagement": "System Category management",
+    "Permission:SystemCategories.Create": "Create",
+    "Permission:SystemCategories.Edit": "Edit",
+    "Permission:SystemCategories.Delete": "Delete",
+    "Permission:SystemCategories.Management": "Management"
   }
 }

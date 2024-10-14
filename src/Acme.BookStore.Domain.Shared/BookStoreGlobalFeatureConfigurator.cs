@@ -13,8 +13,8 @@ public static class BookStoreGlobalFeatureConfigurator
         {
             GlobalFeatureManager.Instance.Modules.CmsKit(cmsKit =>
             {
-                cmsKit.EnableAll();
-            });
+                  cmsKit.EnableAll();
+              });
         });
     }
 }

@@ -60,8 +60,11 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     {
         if (await _openIddictScopeRepository.FindByNameAsync("BookStore") == null)
         {
-            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor {
-                Name = "BookStore", DisplayName = "BookStore API", Resources = { "BookStore" }
+            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor
+            {
+                Name = "BookStore",
+                DisplayName = "BookStore API",
+                Resources = { "BookStore" }
             });
         }
     }
@@ -107,8 +110,8 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             );
         }
 
-        
-        
+
+
 
 
 
@@ -164,7 +167,8 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
         var client = await _openIddictApplicationRepository.FindByClientIdAsync(name);
 
-        var application = new AbpApplicationDescriptor {
+        var application = new AbpApplicationDescriptor
+        {
             ClientId = name,
             ClientType = type,
             ClientSecret = secret,

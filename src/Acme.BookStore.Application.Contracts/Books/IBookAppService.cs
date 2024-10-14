@@ -12,5 +12,5 @@ public interface IBookAppService : ICrudAppService<
         PagedAndSortedResultRequestDto,
         CreateUpdateBookDto>
 {
-        Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync();
+    Task<ListResultDto<AuthorLookupDto>> GetAuthorLookupAsync();
 }

@@ -48,15 +48,15 @@ public static class HealthChecksBuilderExtensions
         {
             options.EndpointConfigureActions.Add(endpointContext =>
             {
-                endpointContext.Endpoints.MapHealthChecks(
-                    new PathString(path.EnsureStartsWith('/')),
-                    new HealthCheckOptions
-                    {
-                        Predicate = _ => true,
-                        ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
-                        AllowCachingResponses = false,
-                    });
-            });
+                  endpointContext.Endpoints.MapHealthChecks(
+                      new PathString(path.EnsureStartsWith('/')),
+                      new HealthCheckOptions
+                      {
+                          Predicate = _ => true,
+                          ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+                          AllowCachingResponses = false,
+                      });
+              });
         });
 
         return services;
@@ -68,8 +68,8 @@ public static class HealthChecksBuilderExtensions
         {
             routerOptions.EndpointConfigureActions.Add(endpointContext =>
             {
-                endpointContext.Endpoints.MapHealthChecksUI(setupOption);
-            });
+                  endpointContext.Endpoints.MapHealthChecksUI(setupOption);
+              });
         });
 
         return services;

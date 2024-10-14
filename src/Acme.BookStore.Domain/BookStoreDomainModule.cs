@@ -37,7 +37,7 @@ namespace Acme.BookStore;
     typeof(BlobStoringDatabaseDomainModule)
     )]
 [DependsOn(typeof(CmsKitDomainModule))]
-    public class BookStoreDomainModule : AbpModule
+public class BookStoreDomainModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
@@ -66,7 +66,7 @@ namespace Acme.BookStore;
             options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch"));
             options.Languages.Add(new LanguageInfo("es", "es", "Español"));
         });
-        
+
 
 #if DEBUG
         context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());

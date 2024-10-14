@@ -7,5 +7,10 @@
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
   },
-  "eslint.workingDirectories": ["./angular"]
+  "eslint.workingDirectories": [
+    { "directory": "./angular", "changeProcessCWD": true }
+  ],
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }

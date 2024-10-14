@@ -1,7 +1,7 @@
 import { authGuard, permissionGuard } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BookComponent } from './book/book.component';
+import { BookComponent } from './book/components/book.component';
 
 const routes: Routes = [
     {
@@ -29,7 +29,28 @@ const routes: Routes = [
         path: 'books',
         loadChildren: () => import('./book/book.module').then((m) => m.BookModule),
     },
-    { path: 'authors', loadChildren: () => import('./author/author.module').then(m => m.AuthorModule) },
+    { path: 'authors', loadChildren: () => import('./author/author.module').then((m) => m.AuthorModule) },
+    {
+        path: 'vats',
+        loadChildren: () => import('./system-category/vat/vat.module').then((m) => m.VatModule),
+    },
+    {
+        path: 'currencies',
+        loadChildren: () => import('./system-category/currency/currency.module').then((m) => m.CurrencyModule),
+    },
+    {
+        path: 'departments',
+        loadChildren: () => import('./system-category/department/department.module').then((m) => m.DepartmentModule),
+    },
+    {
+        path: 'expense-codes',
+        loadChildren: () =>
+            import('./system-category/expense-code/expense-code.module').then((m) => m.ExpenseCodeModule),
+    },
+    {
+        path: 'kind-of-fals',
+        loadChildren: () => import('./system-category/kind-of-fal/kind-of-fal.module').then((m) => m.KindOfFalModule),
+    },
 ];
 
 @NgModule({

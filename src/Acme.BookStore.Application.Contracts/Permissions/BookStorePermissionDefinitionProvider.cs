@@ -31,6 +31,11 @@ public class BookStorePermissionDefinitionProvider : PermissionDefinitionProvide
         galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Update, L("Permission:GalleryImages.Edit"));
         galleryImagePermission.AddChild(BookStorePermissions.GalleryImages.Delete, L("Permission:GalleryImages.Delete"));
 
+        var systemCategoryPermission = bookStoreGroup.AddPermission(BookStorePermissions.SystemCategories.Default, L("Permission:SystemCategories.SystemCategoryManagement"));
+        systemCategoryPermission.AddChild(BookStorePermissions.SystemCategories.Management, L("Permission:SystemCategories.Management"));
+        systemCategoryPermission.AddChild(BookStorePermissions.SystemCategories.Create, L("Permission:SystemCategories.Create"));
+        systemCategoryPermission.AddChild(BookStorePermissions.SystemCategories.Update, L("Permission:SystemCategories.Edit"));
+        systemCategoryPermission.AddChild(BookStorePermissions.SystemCategories.Delete, L("Permission:SystemCategories.Delete"));
     }
 
     private static LocalizableString L(string name)

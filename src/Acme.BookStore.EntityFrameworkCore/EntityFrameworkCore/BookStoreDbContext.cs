@@ -29,6 +29,12 @@ using Volo.CmsKit.Menus;
 using Volo.CmsKit.GlobalResources;
 using Acme.BookStore.GalleryImages;
 using Volo.CmsKit.MarkedItems;
+using Acme.BookStore.SystemCategories;
+using Acme.BookStore.SystemCategories.VATs;
+using Acme.BookStore.SystemCategories.Currencies;
+using Acme.BookStore.SystemCategories.ExpenseCodes;
+using Acme.BookStore.SystemCategories.KindOfFals;
+using Acme.BookStore.SystemCategories.Departments;
 
 namespace Acme.BookStore.EntityFrameworkCore;
 
@@ -62,6 +68,13 @@ public class BookStoreDbContext :
     public DbSet<Book> Books { get; set; }
     public DbSet<Author> Authors { get; set; }
     public DbSet<GalleryImage> GalleryImages { get; set; }
+
+    public DbSet<VAT> VATs { get; set; }
+    public DbSet<Currency> Currencies { get; set; }
+    public DbSet<ExpenseCode> ExpenseCodes { get; set; }
+    public DbSet<KindOfFal> KindOfFals { get; set; }
+    public DbSet<Department> Departments { get; set; }
+    public DbSet<SystemCategory> SystemCategories { get; set; }
 
     #region CMS Kit Entities
 
@@ -173,5 +186,36 @@ public class BookStoreDbContext :
             b.ToTable(BookStoreConsts.DbTablePrefix + "Images", BookStoreConsts.DbSchema);
             b.ConfigureByConvention();
         });
+
+        builder.Entity<SystemCategory>(b =>
+        {
+            b.ToTable(BookStoreConsts.DbTablePrefix + "SystemCategories", BookStoreConsts.DbSchema);
+            b.ConfigureByConvention();
+        });
+
+        builder.Entity<Department>(b =>
+        {
+            b.HasBaseType<SystemCategory>();
+
+        });
+
+        builder.Entity<Currency>(b =>
+        {
+            b.HasBaseType<SystemCategory>();
+        });
+
+        builder.Entity<VAT>(b =>
+        {
+            b.HasBaseType<SystemCategory>();
+        });
+        builder.Entity<ExpenseCode>(b =>
+        {
+            b.HasBaseType<SystemCategory>();
+        });
+        builder.Entity<KindOfFal>(b =>
+        {
+            b.HasBaseType<SystemCategory>();
+        });
     }
+
 }

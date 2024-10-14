@@ -1,0 +1,75 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col col-md-6">
+                <h5 class="card-title">Kind of Fal Management</h5>
+            </div>
+            <div class="text-end col col-md-6">
+                <div class="text-lg-end pt-2">
+                    <button class="btn btn-primary" (click)="createKindOfFal()">
+                        <i class="fa fa-plus me-1"></i> New Kind of Fal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <ngx-datatable [rows]="kindOfFal.items" [count]="kindOfFal.totalCount" [list]="list" default>
+            <ngx-datatable-column name="Deactive" prop="deactive">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input class="form-check-input" type="checkbox" [checked]="row.deactive"
+                        (change)="toggleDeactive(row)" />
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Kind Of Fal" prop="code"></ngx-datatable-column>
+            <ngx-datatable-column name="Description" prop="description" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="Note" prop="note" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [name]="'::Actions' | abpLocalization" [maxWidth]="150" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div ngbDropdown container="body" class="d-inline-block">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" ngbDropdownToggle>
+                            <i class="fa fa-cog me-1"></i>{{ '::Actions' | abpLocalization }}
+                        </button>
+                        <div ngbDropdownMenu>
+                            <button *abpPermission="'BookStore.Books.Edit'" ngbDropdownItem
+                                (click)="editKindOfFal(row.id)">
+                                {{ '::Edit' | abpLocalization }}
+                            </button>
+                            <button *abpPermission="'BookStore.Books.Delete'" ngbDropdownItem
+                                (click)="deleteKindOfFal(row.id)">
+                                {{ '::Delete' | abpLocalization }}
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+    <abp-modal [(visible)]="isModalOpen">
+        <ng-template #abpHeader>
+            <h3>{{ selectedKindOfFal.id ? 'Edit Kind of Fal' : 'New Kind of Fal' }}</h3>
+        </ng-template>
+        <ng-template #abpBody>
+            <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="form-group">
+                    <label for="kind-of-fal-code">Kind Of Fal</label><span> * </span>
+                    <input type="text" id="kind-of-fal-code" class="form-control" formControlName="code" />
+                </div>
+                <div class="mt-2">
+                    <label for="kind-of-fal-description">Description</label><span> * </span>
+                    <input type="text" id="kind-of-fal-description" class="form-control"
+                        formControlName="description" />
+                </div>
+                <div class="mt-2">
+                    <label for="kind-of-fal-note">Note</label>
+                    <input type="text" id="kind-of-fal-note" class="form-control" formControlName="note" />
+                </div>
+            </form>
+        </ng-template>
+        <ng-template #abpFooter>
+            <button class="btn btn-secondary" abpClose>Close</button>
+            <button class="btn btn-primary" (click)="save()" [disabled]="form.invalid">Save</button>
+        </ng-template>
+    </abp-modal>
+</div>

@@ -37,6 +37,46 @@ function configureRoutes(routes: RoutesService) {
                 layout: eLayoutType.application,
                 requiredPolicy: 'BookStore.Authors',
             },
+            {
+                path: '/system-category',
+                name: '::Menu:SystemCategory',
+                iconClass: 'fas fa-list',
+                order: 3,
+                layout: eLayoutType.application,
+            },
+            {
+                path: '/currencies',
+                name: '::Menu:Currencies',
+                parentName: '::Menu:SystemCategory',
+                layout: eLayoutType.application,
+            },
+            {
+                path: '/departments',
+                name: '::Menu:Departments',
+                parentName: '::Menu:SystemCategory',
+                layout: eLayoutType.application,
+            },
+            ,
+            {
+                path: '/expense-codes',
+                name: '::Menu:ExpenseCodes',
+                parentName: '::Menu:SystemCategory',
+                layout: eLayoutType.application,
+            },
+            ,
+            {
+                path: '/kind-of-fals',
+                name: '::Menu:KindOfFals',
+                parentName: '::Menu:SystemCategory',
+                layout: eLayoutType.application,
+            },
+            ,
+            {
+                path: '/vats',
+                name: '::Menu:VATs',
+                parentName: '::Menu:SystemCategory',
+                layout: eLayoutType.application,
+            },
         ]);
     };
 }

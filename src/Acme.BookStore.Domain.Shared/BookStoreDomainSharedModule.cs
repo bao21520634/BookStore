@@ -29,7 +29,7 @@ namespace Acme.BookStore;
     typeof(BlobStoringDatabaseDomainSharedModule)
     )]
 [DependsOn(typeof(CmsKitDomainSharedModule))]
-    public class BookStoreDomainSharedModule : AbpModule
+public class BookStoreDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

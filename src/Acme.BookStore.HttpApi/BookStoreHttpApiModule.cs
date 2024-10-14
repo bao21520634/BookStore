@@ -12,17 +12,17 @@ using Volo.CmsKit;
 
 namespace Acme.BookStore;
 
- [DependsOn(
-    typeof(BookStoreApplicationContractsModule),
-    typeof(AbpPermissionManagementHttpApiModule),
-    typeof(AbpSettingManagementHttpApiModule),
-    typeof(AbpAccountHttpApiModule),
-    typeof(AbpIdentityHttpApiModule),
-    typeof(AbpTenantManagementHttpApiModule),
-    typeof(AbpFeatureManagementHttpApiModule)
-    )]
+[DependsOn(
+   typeof(BookStoreApplicationContractsModule),
+   typeof(AbpPermissionManagementHttpApiModule),
+   typeof(AbpSettingManagementHttpApiModule),
+   typeof(AbpAccountHttpApiModule),
+   typeof(AbpIdentityHttpApiModule),
+   typeof(AbpTenantManagementHttpApiModule),
+   typeof(AbpFeatureManagementHttpApiModule)
+   )]
 [DependsOn(typeof(CmsKitHttpApiModule))]
-    public class BookStoreHttpApiModule : AbpModule
+public class BookStoreHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

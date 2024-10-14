@@ -182,6 +182,65 @@ namespace Acme.BookStore.Migrations
                     b.ToTable("AppImages", (string)null);
                 });
 
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.SystemCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)")
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("CreationTime");
+
+                    b.Property<Guid?>("CreatorId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CreatorId");
+
+                    b.Property<bool>("Deactive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(21)
+                        .HasColumnType("nvarchar(21)");
+
+                    b.Property<string>("ExtraProperties")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("LastModificationTime");
+
+                    b.Property<Guid?>("LastModifierId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LastModifierId");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppSystemCategories", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("SystemCategory");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
                 {
                     b.Property<Guid>("Id")
@@ -2900,6 +2959,47 @@ namespace Acme.BookStore.Migrations
                     b.HasIndex("TenantId", "UserName");
 
                     b.ToTable("CmsUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.Currencies.Currency", b =>
+                {
+                    b.HasBaseType("Acme.BookStore.SystemCategories.SystemCategory");
+
+                    b.Property<float?>("ExchangeRate")
+                        .HasColumnType("real");
+
+                    b.HasDiscriminator().HasValue("Currency");
+                });
+
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.Departments.Department", b =>
+                {
+                    b.HasBaseType("Acme.BookStore.SystemCategories.SystemCategory");
+
+                    b.HasDiscriminator().HasValue("Department");
+                });
+
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.ExpenseCodes.ExpenseCode", b =>
+                {
+                    b.HasBaseType("Acme.BookStore.SystemCategories.SystemCategory");
+
+                    b.HasDiscriminator().HasValue("ExpenseCode");
+                });
+
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.KindOfFals.KindOfFal", b =>
+                {
+                    b.HasBaseType("Acme.BookStore.SystemCategories.SystemCategory");
+
+                    b.HasDiscriminator().HasValue("KindOfFal");
+                });
+
+            modelBuilder.Entity("Acme.BookStore.SystemCategories.VATs.VAT", b =>
+                {
+                    b.HasBaseType("Acme.BookStore.SystemCategories.SystemCategory");
+
+                    b.Property<float?>("Value")
+                        .HasColumnType("real");
+
+                    b.HasDiscriminator().HasValue("VAT");
                 });
 
             modelBuilder.Entity("Acme.BookStore.Books.Book", b =>

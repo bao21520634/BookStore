@@ -1,0 +1,83 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col col-md-6">
+                <h5 class="card-title">Currency Management</h5>
+            </div>
+            <div class="text-end col col-md-6">
+                <div class="text-lg-end pt-2">
+                    <button class="btn btn-primary" (click)="createCurrency()">
+                        <i class="fa fa-plus me-1"></i> New Currency
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <ngx-datatable [rows]="currency.items" [count]="currency.totalCount" [list]="list" default>
+            <ngx-datatable-column name="Deactive" prop="deactive">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <input class="form-check-input" type="checkbox" [checked]="row.deactive"
+                        (change)="toggleDeactive(row)" />
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Code" prop="code"></ngx-datatable-column>
+            <ngx-datatable-column name="Exchange Rate" prop="exchangeRate">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row.exchangeRate | number:'1.0-0' }}
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Description" prop="description" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column name="Note" prop="note" [sortable]="false"></ngx-datatable-column>
+            <ngx-datatable-column [name]="'::Actions' | abpLocalization" [maxWidth]="150" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <div ngbDropdown container="body" class="d-inline-block">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" ngbDropdownToggle>
+                            <i class="fa fa-cog me-1"></i>{{ '::Actions' | abpLocalization }}
+                        </button>
+                        <div ngbDropdownMenu>
+                            <button *abpPermission="'BookStore.Books.Edit'" ngbDropdownItem
+                                (click)="editCurrency(row.id)">
+                                {{ '::Edit' | abpLocalization }}
+                            </button>
+                            <button *abpPermission="'BookStore.Books.Delete'" ngbDropdownItem
+                                (click)="deleteCurrency(row.id)">
+                                {{ '::Delete' | abpLocalization }}
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngx-datatable-column>
+        </ngx-datatable>
+    </div>
+    <abp-modal [(visible)]="isModalOpen">
+        <ng-template #abpHeader>
+            <h3>{{ selectedCurrency.id ? 'Edit Currency' : 'New Currency' }}</h3>
+        </ng-template>
+        <ng-template #abpBody>
+            <form [formGroup]="form" (ngSubmit)="save()">
+                <div class="form-group">
+                    <label for="vat-code">Code</label><span> * </span>
+                    <input type="text" id="vat-code" class="form-control" formControlName="code" />
+                </div>
+                <div class="mt-2">
+                    <label for="vat-exchange-rate">Exchange Rate</label><span> * </span>
+                    <input type="number" id="vat-exchange-rate" class="form-control" formControlName="exchangeRate" />
+                </div>
+                <div class="mt-2">
+                    <label for="vat-description">Description</label><span> * </span>
+                    <input type="text" id="vat-description" class="form-control" formControlName="description" />
+                </div>
+                <div class="mt-2">
+                    <label for="vat-note">Note</label>
+                    <input type="text" id="vat-note" class="form-control" formControlName="note" />
+                </div>
+            </form>
+        </ng-template>
+        <ng-template #abpFooter>
+            <button class="btn btn-secondary" abpClose>Close</button>
+            <button class="btn btn-primary" (click)="save()" [disabled]="form.invalid">Save</button>
+        </ng-template>
+    </abp-modal>
+</div>

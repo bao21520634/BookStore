@@ -21,7 +21,7 @@ namespace Acme.BookStore;
     typeof(AbpSettingManagementHttpApiClientModule)
 )]
 [DependsOn(typeof(CmsKitHttpApiClientModule))]
-    public class BookStoreHttpApiClientModule : AbpModule
+public class BookStoreHttpApiClientModule : AbpModule
 {
     public const string RemoteServiceName = "Default";
 

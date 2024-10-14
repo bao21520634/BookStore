@@ -64,10 +64,10 @@ public class BookStoreHttpApiHostModule : AbpModule
         {
             builder.AddValidation(options =>
             {
-                options.AddAudiences("BookStore");
-                options.UseLocalServer();
-                options.UseAspNetCore();
-            });
+                  options.AddAudiences("BookStore");
+                  options.UseLocalServer();
+                  options.UseAspNetCore();
+              });
         });
 
         if (!hostingEnvironment.IsDevelopment())
@@ -140,8 +140,8 @@ public class BookStoreHttpApiHostModule : AbpModule
                 LeptonXLiteThemeBundles.Styles.Global,
                 bundle =>
                 {
-                    bundle.AddFiles("/global-styles.css");
-                }
+                      bundle.AddFiles("/global-styles.css");
+                  }
             );
         });
     }
@@ -192,19 +192,19 @@ public class BookStoreHttpApiHostModule : AbpModule
         {
             options.AddDefaultPolicy(builder =>
             {
-                builder
-                    .WithOrigins(
-                        configuration["App:CorsOrigins"]?
-                            .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                            .Select(o => o.Trim().RemovePostFix("/"))
-                            .ToArray() ?? Array.Empty<string>()
-                    )
-                    .WithAbpExposedHeaders()
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                    .AllowCredentials();
-            });
+                  builder
+                      .WithOrigins(
+                          configuration["App:CorsOrigins"]?
+                              .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                              .Select(o => o.Trim().RemovePostFix("/"))
+                              .ToArray() ?? Array.Empty<string>()
+                      )
+                      .WithAbpExposedHeaders()
+                      .SetIsOriginAllowedToAllowWildcardSubdomains()
+                      .AllowAnyHeader()
+                      .AllowAnyMethod()
+                      .AllowCredentials();
+              });
         });
     }
 
@@ -224,7 +224,7 @@ public class BookStoreHttpApiHostModule : AbpModule
         {
             app.UseErrorPage();
         }
-        
+
         app.UseStaticFiles();
         app.UseAbpStudioLink();
         app.UseRouting();

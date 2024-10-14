@@ -19,7 +19,7 @@ namespace Acme.BookStore;
     typeof(AbpPermissionManagementApplicationContractsModule)
 )]
 [DependsOn(typeof(CmsKitApplicationContractsModule))]
-    public class BookStoreApplicationContractsModule : AbpModule
+public class BookStoreApplicationContractsModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
